@@ -1,0 +1,109 @@
+# ...existing code...
+# Ignore node modules (root and nested)
+node_modules/
+**/node_modules/
+
+# Also ignore common lock/build artifacts
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Keep the rest of your existing ignores
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db
+
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+.vs/
+*.code-workspace
+.history/
+.idea/
+*.sln.iml
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.v12.suo
+*.v13.suo
+*.v14.suo
+*.v15.suo
+*.nuget.dgspec.json
+project.lock.json
+project.assets.json
+packages/
+_wwwroot/lib/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sdf
+*.mdf
+*.ldf
+appsettings.Development.json
+appsettings.local.json
+secrets.json
+.env
+*.pfx
+*.p12
+publish/
+*.azurepubxml
+*.pubxml
+*.pubxml.user
+TestResults/
+*.sequenced.csv
+.sonar/
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.AppleDouble
+.LSOverride
+._*
+# ...existing code...
