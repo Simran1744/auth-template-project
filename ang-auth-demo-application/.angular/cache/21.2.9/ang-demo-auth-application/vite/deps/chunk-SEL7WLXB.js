@@ -1,6 +1,6 @@
 import {
   PlatformLocation
-} from "./chunk-LMFZSP6C.js";
+} from "./chunk-IZ34A2KS.js";
 import {
   ApplicationRef,
   Attribute,
@@ -65,9 +65,9 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-UCK55DDH.js";
+} from "./chunk-X22CRM32.js";
 
-// ../../node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/@angular/common/fesm2022/_location-chunk.mjs
 function joinWithSlash(start, end) {
   if (!start) return end;
   if (!end) return start;
@@ -372,7 +372,7 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// ../../node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 var HashLocationStrategy = class _HashLocationStrategy extends LocationStrategy {
   _platformLocation;
   _baseHref = "";
@@ -3197,7 +3197,7 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// ../../node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 var PRECOMMIT_HANDLER_SUPPORTED = new InjectionToken("", {
   factory: () => {
     return typeof window !== "undefined" && typeof window.NavigationPrecommitController !== "undefined";
@@ -3223,7 +3223,7 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// ../../node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/@angular/common/fesm2022/common.mjs
 var NavigationAdapterForLocation = class _NavigationAdapterForLocation extends Location {
   navigation = inject(PlatformNavigation);
   destroyRef = inject(DestroyRef);
@@ -4663,4 +4663,4 @@ export {
   PRECONNECT_CHECK_BLOCKLIST,
   NgOptimizedImage
 };
-//# sourceMappingURL=chunk-KLXRUZG4.js.map
+//# sourceMappingURL=chunk-SEL7WLXB.js.map

@@ -94,4 +94,5 @@ public sealed class AuthController : ControllerBase
             email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value
         });
     }
+
 }
