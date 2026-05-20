@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AuthDemoApplication.DTOs.Auth;
@@ -94,5 +95,6 @@ public sealed class AuthController : ControllerBase
             email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value
         });
     }
+    
 
 }
