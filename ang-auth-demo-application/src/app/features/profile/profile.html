@@ -1,0 +1,44 @@
+<div class="profile-container">
+    <h1>My Profile</h1>
+    
+    <div class="pofile-information-card card shadow" style="width: 18rem;">
+       <h4>Profile Information </h4>  
+       <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" [(ngModel)]="email" name="email" [placeholder]="user?.email ?? 'No email found'" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" [disabled]="!editProfile" [placeholder]="user?.username ?? 'Enter username'">
+            </div>
+            <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <input type="text" class="form-control" id="bio" [(ngModel)]="bio" name="bio" [disabled]="!editProfile" [placeholder]="user?.bio ?? 'Enter Bio'">
+            </div>
+            <div class="mb-3">
+                <label for="avatarurl" class="form-label">AvatarUrl</label>
+                <input type="text" class="form-control" id="avatarurl" [(ngModel)]="avatarUrl" name="avatarurl" [disabled]="!editProfile" [placeholder]="user?.avatarUrl ?? 'Enter Url'">
+            </div>
+            
+
+            @if (!editProfile) {
+                <button type="button" (click)="onEdit()">
+                    Edit
+                </button>
+            }
+            @if (editProfile) {
+                <button type="submit">
+                    Save
+                </button>
+            }
+            @if (editProfile) {
+                <button type="button" (click)="onCancel()">
+                    Cancel
+                </button>
+            }    
+       </form> 
+             
+
+    </div>
+</div>

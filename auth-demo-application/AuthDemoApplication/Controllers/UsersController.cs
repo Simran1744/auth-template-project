@@ -20,7 +20,20 @@ public class UsersController : ControllerBase
         _userService = userService;
     }
     
-    [HttpPut("me")]
+    [HttpGet("me")]
+    public async Task<IActionResult> GetMyProfile()
+    {   
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId is null) return Unauthorized();
+
+        var result = await _userService.GetProfileAsync(userId);
+        if (result is null) return NotFound();
+
+        return Ok(result);
+    }
+    
+    
+    [HttpPut("updateProfile")]
     public async Task<IActionResult> UpdateProfile(
         [FromBody] UpdateUserDto dto)
     {

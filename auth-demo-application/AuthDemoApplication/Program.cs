@@ -81,6 +81,20 @@ builder.Services
     {
         options.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
         options.SaveToken = false;
+        
+        //  Read JWT Token
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var token = context.Request.Cookies["token"];
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Token = token;
+                }
+                return Task.CompletedTask;
+            }
+        };
 
         options.TokenValidationParameters = new TokenValidationParameters
         {

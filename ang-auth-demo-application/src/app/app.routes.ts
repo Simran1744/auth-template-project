@@ -3,6 +3,7 @@ import { Home } from './features/home/home';
 import { CONST_ROUTES } from './shared/constants/routes.constants'
 import { Register } from './core/auth/pages/register/register';
 import { Login } from './core/auth/pages/login/login';
+import { Profile } from './features/profile/profile';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,11 @@ export const routes: Routes = [
         title: 'Login',
         component: Login,
     },
+    {
+        path: CONST_ROUTES.PROFILE,
+        title: 'Profile',
+        component: Profile,
+    }
 
 
 ];
