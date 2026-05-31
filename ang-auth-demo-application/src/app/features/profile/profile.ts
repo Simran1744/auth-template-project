@@ -1,56 +1,45 @@
-import { Component, OnInit} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { UserService } from '../../core/services/user-services';
 import { UserProfile } from '../../shared/models/user.model';
+import { ProfileInfoCard } from './profile-info-card/profile-info-card';
 
 @Component({
-  selector: 'app-profile',
-  imports: [FormsModule],
-  templateUrl: './profile.html',
-  styleUrl: './profile.scss',
+    selector: 'app-profile',
+    standalone: true,
+    imports: [ProfileInfoCard],
+    templateUrl: './profile.html',
+    styleUrl: './profile.scss',
 })
-export class Profile {
-  user: UserProfile | null = null;
-  username: string = '';
-  bio: string | null = '';
-  avatarUrl: string | null = '';
-  email: string = '';
-  editProfile: boolean = false;
 
-  //Inject the UserService to call the API for updating the user profile and retrieving the user profile data
-  constructor(private userService: UserService) {}
+export class Profile implements OnInit {
+    // Signal instead of plain property
+    user = signal<UserProfile | null>(null);
 
-  ngOnInit(): void {
-    //Call the API to retrieve the user profile data and populate the form fields
-    this.userService.getProfile().subscribe({
-      next: (response) => {
-        console.log('Request successful', response);
-        this.user = response;
-        this.username = this.user.username;
-        this.bio = this.user.bio;
-        this.email = this.user.email;
-        this.avatarUrl = this.user.avatarUrl;
-      },
-      error: (err) => {
-        console.error('Request failed', err);
-      }
-    });
-  }
+    // Computed values derived from user signal
+    isLoading = signal<boolean>(true);
+    hasError = signal<boolean>(false);
 
-  onEdit(){
-    this.editProfile = true;
-  }
+    private userService = inject(UserService); // modern inject() instead of constructor
 
-  toggleEditProfile() {
-    this.editProfile = !this.editProfile;
-  }
+    ngOnInit(): void {
+        this.userService.getProfile().subscribe({
+            next: (response) => {
+                this.user.set(response); // no cdr needed
+                this.isLoading.set(false);
+            },
+            error: (err) => {
+                console.error('Request failed', err);
+                this.hasError.set(true);
+                this.isLoading.set(false);
+            }
+        });
+    }
 
-  //Call the API to update the user profile with onSubmit() method
-  onSubmit() {
-    console.log('Profile updated successfully');
-  }
-
-  onCancel() {
-    this.editProfile = false;
-  }
+    onProfileUpdated() {
+        this.userService.getProfile().subscribe({
+            next: (response) => {
+                this.user.set(response);
+            }
+        });
+    }
 }

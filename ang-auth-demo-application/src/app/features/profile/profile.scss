@@ -5,3 +5,14 @@
     justify-content: center;
     padding: 5px;
 }
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start; // cards align at the top not the center
+    gap: 2rem;
+    width: 100%;
+    max-width: 900px; // stops it stretching too wide on large screens
+    margin: 0 auto; // centers the whole container
+}

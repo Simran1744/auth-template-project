@@ -1,0 +1,61 @@
+<div class="profile-information-card card shadow" style="width: 18rem;">
+    <h4>Profile Information</h4>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="email"
+                [value]="user()?.email ?? ''"
+                name="email" 
+                readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="username"
+                [value]="username()"
+                (input)="username.set($any($event.target).value)"
+                name="username" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="bio"
+                [value]="bio()"
+                (input)="bio.set($any($event.target).value)"
+                name="bio" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="avatarurl" class="form-label">Avatar URL</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="avatarurl"
+                [value]="avatarUrl()"
+                (input)="avatarUrl.set($any($event.target).value)"
+                name="avatarurl" 
+                [disabled]="!editProfile()">
+        </div>
+
+        @if (!editProfile()) {
+            <button type="button" (click)="onEdit()">Edit</button>
+        }
+
+        @if (editProfile()) {
+            <button type="submit">Save</button>
+            <button type="button" (click)="onCancel()">Cancel</button>
+        }
+    </form>
+</div>
