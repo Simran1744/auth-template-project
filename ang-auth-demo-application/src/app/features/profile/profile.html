@@ -1,6 +1,7 @@
 <div class="profile-container">
     <h1>My Profile</h1>
-    <div class="cards-container">
+    <div class="cards-container pt-4">
      <app-profile-info-card [user]="user()" (profileUpdated)="onProfileUpdated()"></app-profile-info-card>
+     <app-seller-card [seller]="seller()" (sellerUpdated)="onSellerApplied()"></app-seller-card>
     </div>
 </div>

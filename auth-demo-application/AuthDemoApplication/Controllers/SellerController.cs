@@ -19,7 +19,7 @@ public sealed class SellerController : ControllerBase
         _sellerService = sellerService;
     }
 
-    [HttpPost("apply")]
+    [HttpPost("apply")] 
     public async Task<IActionResult> Apply(
         [FromBody] CreateSellerProfileDto dto)
     {

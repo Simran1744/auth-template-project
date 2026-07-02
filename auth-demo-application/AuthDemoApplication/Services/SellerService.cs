@@ -38,7 +38,7 @@ public class SellerService : ISellerService
             NexusModsProfileUrl = dto.NexusModsProfileUrl,
             GitHubProfileUrl = dto.GitHubProfileUrl,
             WebsiteUrl = dto.WebsiteUrl,
-            IsApproved = false,
+            Status = SellerStatus.Pending,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
@@ -66,7 +66,7 @@ public class SellerService : ISellerService
         NexusModsProfileUrl = s.NexusModsProfileUrl,
         GitHubProfileUrl = s.GitHubProfileUrl,
         WebsiteUrl = s.WebsiteUrl,
-        IsApproved = s.IsApproved,
+        Status = s.Status,
         IsFeatured = s.IsFeatured,
         TotalSales = s.TotalSales,
         CreatedAt = s.CreatedAt

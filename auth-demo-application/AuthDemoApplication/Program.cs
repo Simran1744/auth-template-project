@@ -1,19 +1,28 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using AuthDemoApplication.Data;
+using AuthDemoApplication.DTOs.Mods;
 using AuthDemoApplication.Models;
 using AuthDemoApplication.Options;
 using AuthDemoApplication.Repositories;
 using AuthDemoApplication.Repositories.Interfaces;
+using AuthDemoApplication.Seeders;
 using AuthDemoApplication.Services;
 using AuthDemoApplication.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters
+            .Add(new JsonStringEnumConverter());
+    });
+    
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -125,6 +134,14 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<ISellerService, SellerService>();
 
+// This binds the "NexusMods" section of your secrets/appsettings to the NexusOptions class
+builder.Services.Configure<NexusOptions>(builder.Configuration.GetSection("NexusMods"));
+
+builder.Services.AddHttpClient<NexusModsSeeder>(client =>
+{
+    client.BaseAddress = new Uri("https://api.nexusmods.com/v1/");
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -152,5 +169,48 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+if (args.Contains("--seed-games"))
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+    await GameSeeder.SeedAsync(context);
+    return; // exit after seeding, don't start the web server
+}
+
+// Fill the database with some mods for from NexusMods for testing purposes
+if (args.Contains("--seed-mods"))
+{
+    using var scope = app.Services.CreateScope();
+    var myService = scope.ServiceProvider.GetRequiredService<NexusModsSeeder>();
+    //List<NexusModsJsonResponse>? trendingMods = await myService.GetTrendingModsAsync();
+    
+    bool success = await myService.GetTrendingModsAsync();
+    
+    Console.WriteLine(success);
+    
+    // 4. Use the data!
+     /*if (trendingMods != null && trendingMods.Count > 0)
+     {
+         Console.WriteLine($"\nSuccessfully found {trendingMods.Count} trending mods:\n");
+
+         foreach (var mod in trendingMods)
+         {
+             // Print the mod name and who uploaded it from the nested User class
+             Console.WriteLine($"- {mod.name} (Version: {mod.version})"); 
+             Console.WriteLine($"  Uploaded by: {mod.user?.name ?? "Unknown"}");
+             Console.WriteLine($"  Downloads: {mod.mod_downloads:N0}");
+             Console.WriteLine($"  Picture Url: {mod.picture_url ?? "Unknown"}");
+             Console.WriteLine(new string('-', 40));
+        }
+     }
+     else
+     {
+        Console.WriteLine("No trending mods found or response was empty.");
+     }*/
+
+     return;
+}
 
 app.Run();

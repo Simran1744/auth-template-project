@@ -17,6 +17,7 @@ export class Login {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Login successful', response);
+        this.authService.isLoggedIn.set(true);
         // redirect to home page
       },
       error: (err) => {

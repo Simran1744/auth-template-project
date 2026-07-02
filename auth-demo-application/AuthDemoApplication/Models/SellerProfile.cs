@@ -1,5 +1,16 @@
 namespace AuthDemoApplication.Models;
 
+
+public enum SellerStatus
+{
+    Pending,
+    Approved,
+    Rejected,
+    Suspended
+}
+    
+
+
 public sealed class SellerProfile
 {
     public Guid Id { get; set; }
@@ -19,7 +30,7 @@ public sealed class SellerProfile
     public string? WebsiteUrl { get; set; }
     
     // Platform status
-    public bool IsApproved { get; set; } = false;
+    public SellerStatus Status { get; set; } =  SellerStatus.Pending;
     public bool IsFeatured { get; set; } = false;
     public DateTime? ApprovedAt { get; set; }
     

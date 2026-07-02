@@ -8,9 +8,9 @@
 
 .cards-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start; // cards align at the top not the center
+    align-items: center; // cards align at the top not the center
     gap: 2rem;
     width: 100%;
     max-width: 900px; // stops it stretching too wide on large screens

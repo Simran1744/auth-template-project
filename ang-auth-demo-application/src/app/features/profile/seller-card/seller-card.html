@@ -1,1 +1,170 @@
-<p>seller-card works!</p>
+<div class="container-sm pt-4 shadow border rounded-2 me-4" >
+    <h4>Seller Profile</h4>
+
+    @if (!seller()) {
+        <!--Render rest of the input fields here-->
+        <form (ngSubmit)="onApply()">
+
+            <div class="mb-3">
+                <label for="displayname" class="form-label">Seller Name</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="username"
+                    [value]="displayname()"
+                    (input)="displayname.set($any($event.target).value)"
+                    name="displayname" 
+                    >
+            </div>
+
+            <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="bio"
+                    [value]="bio()"
+                    (input)="bio.set($any($event.target).value)"
+                    name="bio" 
+                    >
+            </div>
+
+            <div class="mb-3">
+                <label for="avatarurl" class="form-label">Avatar URL</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="avatarurl"
+                    [value]="avatarUrl()"
+                    (input)="avatarUrl.set($any($event.target).value)"
+                    name="avatarurl" 
+                    >
+            </div>
+
+            <div class="mb-3">
+                <label for="nexusModsProfileUrl" class="form-label">NexusMods Profile URL</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nexusModsProfileUrl"
+                    [value]="nexusModsProfileUrl()"
+                    (input)="nexusModsProfileUrl.set($any($event.target).value)"
+                    name="nexusModsProfileUrl" 
+                    >
+            </div>
+
+            <div class="mb-3">
+                <label for="gitHubProfileUrl" class="form-label">Github Profile URL</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="gitHubProfileUrl"
+                    [value]="gitHubProfileUrl()"
+                    (input)="gitHubProfileUrl.set($any($event.target).value)"
+                    name="gitHubProfileUrl" 
+                    >
+            </div>
+
+            <div class="mb-3">
+                <label for="websiteUrl" class="form-label">Personal Portfolio URL</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="websiteUrl"
+                    [value]="websiteUrl()"
+                    (input)="websiteUrl.set($any($event.target).value)"
+                    name="websiteUrl" 
+                    >
+            </div>
+        </form>
+        <button class="btn btn-success mt-3 mb-2" (click)="onApply()">Apply as Seller</button>
+    }
+
+    @if (seller()?.status === SellerStatus.PENDING) {
+        <p>Your application as a seller is under review.</p>
+        <div class="mb-3">
+            <label for="displayname" class="form-label">Seller Name</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="username"
+                [value]="displayname()"
+                (input)="displayname.set($any($event.target).value)"
+                name="displayname" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="bio"
+                [value]="bio()"
+                (input)="bio.set($any($event.target).value)"
+                name="bio" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="avatarurl" class="form-label">Avatar URL</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="avatarurl"
+                [value]="avatarUrl()"
+                (input)="avatarUrl.set($any($event.target).value)"
+                name="avatarurl" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="nexusModsProfileUrl" class="form-label">NexusMods Profile Link</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nexusModsProfileUrl"
+                [value]="nexusModsProfileUrl()"
+                (input)="nexusModsProfileUrl.set($any($event.target).value)"
+                name="nexusModsProfileUrl" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="gitHubProfileUrl" class="form-label">Github Profile Link</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="gitHubProfileUrl"
+                [value]="gitHubProfileUrl()"
+                (input)="gitHubProfileUrl.set($any($event.target).value)"
+                name="gitHubProfileUrl" 
+                [disabled]="!editProfile()">
+        </div>
+
+        <div class="mb-3">
+            <label for="websiteUrl" class="form-label">Website Portfolio Link</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="websiteUrl"
+                [value]="websiteUrl()"
+                (input)="websiteUrl.set($any($event.target).value)"
+                name="websiteUrl" 
+                [disabled]="!editProfile()">
+        </div>
+    }
+
+    @if (seller()?.status === SellerStatus.APPROVED) {
+        <a routerLink="/seller/dashboard">Go to Seller Dashboard</a>
+    }
+
+    @if (seller()?.status === SellerStatus.REJECTED) {
+        <p>Your application was rejected.</p>
+        <button (click)="onApply()">Reapply</button>
+    }
+
+    @if (seller()?.status === SellerStatus.SUSPENDED) {
+        <p>Your account has been suspended. Please contact support.</p>
+    }
+</div>

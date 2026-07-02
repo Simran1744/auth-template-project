@@ -1,11 +1,12 @@
-<div class="profile-information-card card shadow" style="width: 18rem;">
+<div class="container-sm pt-4 shadow border rounded-2 me-4" >
     <h4>Profile Information</h4>
 
     <form (ngSubmit)="onSubmit()">
-        <div class="mb-3">
+        
+        <div class="form-group pt-2">
             <label for="email" class="form-label">Email</label>
             <input 
-                type="text" 
+                type="email" 
                 class="form-control" 
                 id="email"
                 [value]="user()?.email ?? ''"
@@ -13,7 +14,7 @@
                 readonly>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group pt-2">
             <label for="username" class="form-label">Username</label>
             <input 
                 type="text" 
@@ -25,7 +26,7 @@
                 [disabled]="!editProfile()">
         </div>
 
-        <div class="mb-3">
+        <div class="form-group pt-2">
             <label for="bio" class="form-label">Bio</label>
             <input 
                 type="text" 
@@ -37,7 +38,7 @@
                 [disabled]="!editProfile()">
         </div>
 
-        <div class="mb-3">
+        <div class="form-group pt-2">
             <label for="avatarurl" class="form-label">Avatar URL</label>
             <input 
                 type="text" 
@@ -50,12 +51,12 @@
         </div>
 
         @if (!editProfile()) {
-            <button type="button" (click)="onEdit()">Edit</button>
+            <button type="button" class="btn btn-primary mt-3 mb-2" (click)="onEdit()">Edit</button>
         }
 
         @if (editProfile()) {
-            <button type="submit">Save</button>
-            <button type="button" (click)="onCancel()">Cancel</button>
+            <button type="submit" class="btn btn-success mt-3 mb-2 me-2">Save</button>
+            <button type="button" class="btn btn-secondary mt-3 mb-2" (click)="onCancel()">Cancel</button>
         }
     </form>
 </div>
