@@ -133,6 +133,9 @@ builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 builder.Services.AddScoped<ISellerService, SellerService>();
+builder.Services.AddScoped<IAssetRepository, AssetRepository>();
+builder.Services.AddScoped<IGameRepository, GameRepository>();
+builder.Services.AddScoped<IAssetService, AssetService>();
 
 // This binds the "NexusMods" section of your secrets/appsettings to the NexusOptions class
 builder.Services.Configure<NexusOptions>(builder.Configuration.GetSection("NexusMods"));
