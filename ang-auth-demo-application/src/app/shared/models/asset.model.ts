@@ -11,7 +11,7 @@ export enum AssetStatus{
 
 export interface Asset {
     id: string;
-    displayname: string;
+    title: string;
     shortDescription: string;
     longDescription: string;
     price: number;

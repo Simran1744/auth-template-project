@@ -1,0 +1,11 @@
+<div class="asset-card shadow border rounded-2 me-4 mb-4">
+    <!-- Use place holder img here -->
+    <div class="asset-image-container">
+        <img src="https://placehold.co/300x150" alt="Asset Image" class="asset-image">
+    </div>
+    <div class="asset-details">
+        <h4>{{asset()?.title || "Undefined"}}</h4>
+        <h5>{{"Elden Ring"}}</h5>
+        <p>{{ asset()?.price}} {{' ' + asset()?.currency}}</p>
+    </div>
+</div>

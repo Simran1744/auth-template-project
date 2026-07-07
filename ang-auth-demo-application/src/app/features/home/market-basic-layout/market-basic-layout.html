@@ -1,0 +1,9 @@
+<div class="market-basic-layout-container">
+    @for (item of assets(); track item.id) {
+        <div class="asset-card">
+            <app-asset [asset]="item"></app-asset>
+        </div>
+        } @empty {
+        <p>No items found.</p>
+        }
+</div>

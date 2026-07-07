@@ -1,0 +1,13 @@
+.market-container{
+    // 1. Constrain the maximum width (prevents it from stretching infinitely on big screens)
+  max-width: 1200px; 
+  
+  // 2. Center the container horizontally by making left/right margins automatic
+  margin: 0 auto; 
+  
+  // 3. Optional: Add a small padding safety net so content doesn't touch the screen edge on mobile
+  padding: 0 20px; 
+  
+  // 4. Ensures layout rules apply cleanly
+  width: 100%;
+}

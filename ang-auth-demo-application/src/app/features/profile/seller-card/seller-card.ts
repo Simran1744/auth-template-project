@@ -16,7 +16,7 @@ export class SellerCard implements OnChanges{
     private sellerService = inject(SellerService); // modern inject() instead of constructor
    
     // input() signal — modern replacement for @Input()
-    seller = input<SellerProfile | null>(null);
+    seller = input<SellerProfile | null>(null)
 
     // output() signal — modern replacement for @Output()
     sellerUpdated = output<void>();

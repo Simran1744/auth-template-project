@@ -1,0 +1,18 @@
+
+.asset-details{
+    padding: 5px;
+}
+
+.asset-card {
+    height: 300px;
+    width: 300px; // Standardizing the width alongside max-height keeps your grid uniform!
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    // Optional bonus: if you want long descriptions to smoothly fade out at the bottom
+    h4, p {
+        text-overflow: ellipsis;
+        // custom layout rule to handle multiline truncation if needed
+    }
+}

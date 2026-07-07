@@ -50,7 +50,8 @@ public class AssetService : IAssetService
         ReviewCount =  a.ReviewCount,
         CreatedAt = a.CreatedAt,
         UpdatedAt = a.UpdatedAt,
-        PublishedAt = a.PublishedAt
+        PublishedAt = a.PublishedAt,
+        Game = a.Game,
     };
     
     

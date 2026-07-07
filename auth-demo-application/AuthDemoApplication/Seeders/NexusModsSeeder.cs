@@ -107,7 +107,10 @@ public class NexusModsSeeder
                         // Foreign keys
                         SellerProfileId = Guid.Parse("1CE5881F-B43A-4227-A53B-BDADB05EFB58"), 
                         GameId = dbGame.Id,
-                        CategoryId = Guid.Parse("54EADC09-1482-463C-AC12-CE8FE965BB57")
+                        CategoryId = Guid.Parse("54EADC09-1482-463C-AC12-CE8FE965BB57"),
+                        
+                        //Additional fields such as Game
+                        Game = dbGame
                     };
             
                     var created = await _assetRepository.CreateAsync(Asset);
