@@ -1,0 +1,12 @@
+<h4>Popular Mods</h4>
+<div class="carousel-container">
+    <button class="carousel-control prev" (click)="scroll(carouselTrack, -1160)">◀</button>
+    
+    <div class="carousel-track" #carouselTrack>
+      @for (asset of mostDownloadedAssets(); track asset.id) {
+        <app-carousel-asset [asset]="asset"></app-carousel-asset>
+      }
+    </div>
+  
+    <button class="carousel-control next" (click)="scroll(carouselTrack, 1160)">▶</button>
+</div>

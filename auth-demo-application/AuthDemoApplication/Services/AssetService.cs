@@ -51,7 +51,8 @@ public class AssetService : IAssetService
         CreatedAt = a.CreatedAt,
         UpdatedAt = a.UpdatedAt,
         PublishedAt = a.PublishedAt,
-        Game = a.Game,
+        GameId =  a.GameId,
+        GameName = a.Game.Name
     };
     
     

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Asset } from '../../../shared/models/asset.model';
+import { Asset } from '../../../../shared/models/asset.model';
 
 @Component({
   selector: 'app-asset',

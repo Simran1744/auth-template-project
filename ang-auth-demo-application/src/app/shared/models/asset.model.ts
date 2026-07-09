@@ -25,4 +25,6 @@ export interface Asset {
     createdAt: string;
     updatedAt: string;
     publishedAt: string | null;
-}
+    gameId: string;
+    gameName: string;
+}   

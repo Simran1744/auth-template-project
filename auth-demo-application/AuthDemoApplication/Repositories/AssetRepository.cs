@@ -25,6 +25,7 @@ public sealed class AssetRepository : IAssetRepository
     {
         return await _context.Assets
             .AsNoTracking()
+            .Include(a => a.Game)
             .OrderByDescending(a => a.CreatedAt)
             .Take(100)
             .ToListAsync();

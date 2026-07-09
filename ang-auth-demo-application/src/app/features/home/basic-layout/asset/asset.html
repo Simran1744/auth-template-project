@@ -4,8 +4,8 @@
         <img src="https://placehold.co/300x150" alt="Asset Image" class="asset-image">
     </div>
     <div class="asset-details">
-        <h4>{{asset()?.title || "Undefined"}}</h4>
-        <h5>{{"Elden Ring"}}</h5>
+        <h4>{{asset()?.title?.toUpperCase() || "Undefined"}}</h4>
+        <h5>{{asset()?.gameName}}</h5>
         <p>{{ asset()?.price}} {{' ' + asset()?.currency}}</p>
     </div>
 </div>
