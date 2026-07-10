@@ -2,6 +2,26 @@
     <h1>Market</h1>
     <div class="market-container">
         <app-market-carousel-layout [mostDownloadedAssets]="mostDownloadedAssets()"></app-market-carousel-layout>
+        @if (featuredAssets()!== null && featuredAssets()!.length > 0) {
+          <app-market-featured-layout [featuredAssets]="featuredAssets()"></app-market-featured-layout>
+        }
         <app-market-basic-layout [assets]="assets()"></app-market-basic-layout>
+        <nav aria-label="Asset marketplace pagination" class="d-flex justify-content-center mt-4">
+            <ul class="pagination">
+              
+              <li class="page-item" [class.disabled]="currentPage() === 1">
+                <button class="page-link" (click)="goToPage(currentPage() - 1)">Previous</button>
+              </li>
+          
+              <li class="page-item disabled">
+                <span class="page-link">Page {{ currentPage() }} of {{ totalPages() }}</span>
+              </li>
+          
+              <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+                <button class="page-link" (click)="goToPage(currentPage() + 1)">Next</button>
+              </li>
+          
+            </ul>
+          </nav>
     </div>
 </div>

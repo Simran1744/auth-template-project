@@ -1,3 +1,4 @@
+using AuthDemoApplication.DTOs;
 using AuthDemoApplication.DTOs.Assets;
 using AuthDemoApplication.Models;
 using AuthDemoApplication.Repositories.Interfaces;
@@ -31,6 +32,37 @@ public class AssetService : IAssetService
 
         return dtoAssets;
     }
+    
+    public async Task<List<AssetDto>> GetFeaturedAssetsAsync()
+    {
+        var assets = await _assetRepository.GetFeaturedAssetsAsync(9);
+        return assets.Select(a => MapToDto(a)).ToList();
+    }
+
+    public async Task<List<AssetDto>> GetMostDownloadedAssetsAsync()
+    {
+        var assets = await _assetRepository.GetMostDownloadedAssetsAsync(9);
+        return assets.Select(a => MapToDto(a)).ToList();
+    }
+    
+    public async Task<PagedResult<AssetDto>> GetPagedAssetsAsync(int pageNumber, int pageSize)
+    {
+        // Call the repository to fetch raw tuple data
+        var (items, totalCount) = await _assetRepository.GetPagedAssetsAsync(pageNumber, pageSize);
+
+        // Map data items to DTOs here in the service layer
+        var dtos = items.Select(a => MapToDto(a)).ToList();
+
+        return new PagedResult<AssetDto>
+        {
+            Items = dtos,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount
+        };
+    }
+    
+    
     
     //add Method to Map Model to DTO
     

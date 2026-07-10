@@ -30,4 +30,29 @@ public class AssetController : ControllerBase
         return Ok(result);
     }
     
+    [HttpGet("getPagedAssets")]
+    public async Task<IActionResult> GetAllPagedAssets([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 12)
+    {
+        //Console.WriteLine("pageNumber: " + pageNumber);
+        //Console.WriteLine("pageSize: " + pageSize);
+        var result = await _assetService.GetPagedAssetsAsync(pageNumber, pageSize);
+        return Ok(result);
+    }
+
+    [HttpGet("getMostDownloadedAssets")]
+    public async Task<IActionResult> GetMostDownloadedAssets()
+    {
+        var result = await _assetService.GetMostDownloadedAssetsAsync();
+        return Ok(result);
+    }
+
+    [HttpGet("getFeaturedAssets")]
+    public async Task<IActionResult> GetFeaturedAssets()
+    {
+        var result = await _assetService.GetFeaturedAssetsAsync();
+        return Ok(result);
+    }
+    
+    
+    
 }
